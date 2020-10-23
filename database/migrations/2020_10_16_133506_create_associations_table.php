@@ -20,8 +20,9 @@ class CreateAssociationsTable extends Migration
             $table->text('description')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained();
 
+            $table->foreignId('user_id')->constrained();
+            
         });
     }
 
@@ -32,6 +33,9 @@ class CreateAssociationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associations');
+        Schema::table('associations', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->drop('asssociations');
+        });
     }
 }
