@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Association;
+use App\Http\Requests\CreateAssociation;
 
 class AssociationController extends Controller
 {
@@ -19,8 +20,9 @@ class AssociationController extends Controller
         return view('associations.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateAssociation $request)
     {
+
         $user = auth()->user();
         $userID = $user->id;
 
