@@ -34,7 +34,7 @@
                     </button>
                     </form>
                 @else
-                    <a href="test" class="fa fa-plus-circle fa-lg text-dark"></a>
+                    <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>
                 @endif
                 </td>              
             </tr>

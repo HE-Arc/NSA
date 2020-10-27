@@ -26,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Route::get('/associations', 'AssociationController@index');
 
 Route::resource('associations', AssociationController::class);
+
+Route::get('/{user}/subscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
