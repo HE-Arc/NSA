@@ -2,4 +2,8 @@
 
 @section('content')
 
+@include('includes.validation')
+
+
+
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateActivity;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Models\Activity;
@@ -20,18 +21,17 @@ class ActivityController extends Controller
         return view('activities.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateActivity $request)
     {
-        $activity = new Activity();
+        $request->validate($request->rules());
 
+        $activity = new Activity();
         $activity->title = $request->title;
         $activity->description = $request->description;
         $activity->location = $request->location;
         $activity->date = $request->date;
 
         //TODO : potentially improve this required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
-
-        $request->validate(['image' => 'image|mimes:png,jpg,jpeg,gif|max:1024']);
 
         if ($request->image) {
             if ($request->image->isValid()) {
@@ -49,28 +49,19 @@ class ActivityController extends Controller
         return view('activities.edit', compact('activity'));
     }
 
-    public function update(Request $request, Activity $activity)
+    public function update(CreateActivity $request, Activity $activity)
     {
-        $request->validate([
-            'date' => 'required',
-            'location' => 'required',
-            'title' => 'required',
-            'description' => 'required'
-        ]);
+        $request->validate($request->rules());
 
         $activity->title = $request->title;
         $activity->description = $request->description;
         $activity->location = $request->location;
         $activity->date = $request->date;
 
-        $request->validate(['image' => 'image|mimes:png,jpg,jpeg,gif|max:1024']);
-
         if ($request->image)
         {
             if ($request->image->isValid())
             {
-                error_log("xd");
-
                 Image::destroyAndDelete($activity->image_id);
                 $activity->image_id = $this->uploadImage($request->image);
             }
@@ -81,8 +72,11 @@ class ActivityController extends Controller
         return redirect()->route('activities.index')->with('success', 'Activity updated successfully');
     }
 
-    public function delete()
+    public function destroy(Activity $activity)
     {
+        $activity->delete();
+
+        return redirect()->route('associations.index')->with('success', 'Association deleted successfully');
     }
 
     public function uploadImage(UploadedFile $file)

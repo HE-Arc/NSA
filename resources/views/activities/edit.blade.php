@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('includes.validation')
+
 <h1>Update an Activity</h1>
 
 <form method="POST" action="{{ route('activities.update', $activity) }}" enctype="multipart/form-data">

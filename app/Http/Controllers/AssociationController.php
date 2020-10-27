@@ -22,20 +22,18 @@ class AssociationController extends Controller
 
     public function show(Association $association)
     {
-        return view('associations.show',compact('association'));
+        return view('associations.show', compact('association'));
     }
 
     public function edit(Association $association)
     {
         $user = auth()->user();
         $userID = $user->id;
-        if ($association->user_id == $userID){
-        return view('associations.edit',compact('association'));
-        }
-        else{ 
+        if ($association->user_id == $userID) {
+            return view('associations.edit', compact('association'));
+        } else {
             return redirect()->back()->withErrors('You can\'t edit those associations');
         }
-        
     }
 
     public function update(CreateAssociation $request, Association $association)
@@ -43,9 +41,8 @@ class AssociationController extends Controller
         //dd($association);
         $request->validate($request->rules());
         $association->update($request->all());
-        
-        return redirect()->route('associations.index')->with('success','Association updated successfully.');
 
+        return redirect()->route('associations.index')->with('success', 'Association updated successfully.');
     }
 
     public function destroy(Association $association)
@@ -57,6 +54,7 @@ class AssociationController extends Controller
 
     public function store(CreateAssociation $request)
     {
+        $request->validate($request->rules());
 
         $user = auth()->user();
         $userID = $user->id;
@@ -68,7 +66,6 @@ class AssociationController extends Controller
         $association->user_id = $userID;
         $association->save();
 
-        return redirect()->back()->with('success','Association has been added successfully.');
-
+        return redirect()->back()->with('success', 'Association has been added successfully.');
     }
 }

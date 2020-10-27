@@ -26,7 +26,6 @@ class Image extends Model
         if(Storage::disk('public')->delete('/uploads/images/' . $image->storage_name))
         {
            $image->delete();
-
         }
     }
 }

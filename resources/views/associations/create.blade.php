@@ -10,7 +10,7 @@
         @csrf
         <input type="text" name="name" required placeholder="Nom de l'association" value = "{{old('name')}}"><br />
         <input type="email" name="email" required placeholder="email" value = "{{old('email')}}"><br />
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Description" value ="{{old('description')}}"></textarea><br />
+        <textarea name="description" id="" cols="30" rows="10" placeholder="Description"></textarea>{{old('description')}}<br />
 
         <button type="submit">Créer</button><br />
     
