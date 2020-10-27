@@ -4,13 +4,6 @@
 
 @include('includes.validation')
 
-@if($errors->any())
-    <ul>
-        @foreach($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-@endif
 
 <div class="container">
     <form action="{{route('associations.store')}}" method="POST">

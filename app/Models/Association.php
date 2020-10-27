@@ -9,6 +9,8 @@ class Association extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'email', 'description'];
+
     public function user()
     {
         return $this->belongsTo("App\Models\User");
