@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAssociation extends FormRequest
+class CreateActivity extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,11 @@ class CreateAssociation extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|unique:associations|max:255',
-            'email'=>'required|email|unique:associations'
+            'date' => 'required|date|after_or_equal:today',
+            'location' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'image|nullable|mimes:png,jpg,jpeg,gif|max:10240' // required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000
         ];
     }
 }

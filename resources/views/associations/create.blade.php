@@ -4,17 +4,23 @@
 
 @include('includes.validation')
 
+<h1>Create an Association</h1>
 
-<div class="container">
-    <form action="{{route('associations.store')}}" method="POST">
-        @csrf
-        <input type="text" name="name" required placeholder="Nom de l'association" value = "{{old('name')}}"><br />
-        <input type="email" name="email" required placeholder="email" value = "{{old('email')}}"><br />
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Description" value ="{{old('description')}}"></textarea><br />
-
-        <button type="submit">Créer</button><br />
-    
-    </form>
-</div>
+<form action="{{route('associations.store')}}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required value = "{{old('name')}}">
+    </div>
+    <div class="form-group">
+        <label for="description">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required value = "{{old('email')}}">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>{{old('description')}}
+    </div>
+    <button type="submit" class="btn btn-primary">Create an association</button>
+</form>
 
 @endsection
