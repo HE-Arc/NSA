@@ -68,7 +68,7 @@ class AssociationController extends Controller
         $association->user_id = $userID;
         $association->save();
 
-        return redirect()->back()->with('success','Association has been added successfully.');
+        return redirect()->route('associations.index')->with('success','Association has been added successfully.');
 
     }
 }
