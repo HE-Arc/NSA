@@ -34,6 +34,7 @@ class AssociationController extends Controller
     {
         $user = auth()->user();
         $userID = $user->id;
+
         if ($association->user_id == $userID) {
             return view('associations.edit', compact('association'));
         } else {

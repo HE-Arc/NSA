@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateActivity;
 use App\Models\Activity;
+use App\Models\Association;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,9 @@ class ActivityController extends Controller
     public function create()
     {
         $user = Auth::user();
+        $userAssociations = $user->associations->sortBy('name'); //Retrieving sorted by name, so we can display sorted as well
 
-        $userAssociations = $user->associations; //TODO : styleCI
-
-        return view('activities.create');
+        return view('activities.create', compact('userAssociations'));
     }
 
     public function store(CreateActivity $request)
@@ -38,6 +38,7 @@ class ActivityController extends Controller
         $activity->description = $request->description;
         $activity->location = $request->location;
         $activity->date = $request->date;
+        $activity->association_id = $request->association_id;
 
         if ($request->image) {
             if ($request->image->isValid()) {

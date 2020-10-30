@@ -1,7 +1,7 @@
 @if(session()->has('success'))
 <div class="alert alert-success fade in alert-dismissible show">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true" style="font-size:20px">×</span>
+        <span aria-hidden="true" style="font-size:1em">×</span>
     </button>
     {{ session()->get('success') }}
 </div>
