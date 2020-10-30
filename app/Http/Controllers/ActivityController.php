@@ -42,7 +42,7 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        return redirect()->route('activities.index')->with('success', 'Activity created successfully');
+        return redirect()->route('activities.index')->with('success', 'Activity has been added successfully.');
     }
 
     public function edit(Activity $activity)
@@ -68,7 +68,7 @@ class ActivityController extends Controller
 
         $activity->update();
 
-        return redirect()->route('activities.index')->with('success', 'Activity updated successfully');
+        return redirect()->route('activities.index')->with('success', 'Activity has been updated successfully.');
     }
 
     public function destroy(Activity $activity)
@@ -79,6 +79,6 @@ class ActivityController extends Controller
             $activity->delete();
         }
 
-        return redirect()->route('activities.index')->with('success', 'Activity deleted successfully');
+        return redirect()->route('activities.index')->with('success', 'Activity has been deleted successfully.');
     }
 }

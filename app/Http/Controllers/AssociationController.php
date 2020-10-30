@@ -37,7 +37,7 @@ class AssociationController extends Controller
         if ($association->user_id == $userID) {
             return view('associations.edit', compact('association'));
         } else {
-            return redirect()->back()->withErrors('You can\'t edit those associations');
+            return redirect()->back()->withErrors('You cannot edit these associations.');
         }
     }
 
@@ -46,14 +46,14 @@ class AssociationController extends Controller
         $request->validate($request->rules());
         $association->update($request->all());
 
-        return redirect()->route('associations.index')->with('success', 'Association updated successfully.');
+        return redirect()->route('associations.index')->with('success', 'Association has been updated successfully.');
     }
 
     public function destroy(Association $association)
     {
         $association->delete();
 
-        return redirect()->route('associations.index')->with('success', 'Association deleted successfully');
+        return redirect()->route('associations.index')->with('success', 'Association has been deleted successfully.');
     }
 
     public function store(CreateAssociation $request)
