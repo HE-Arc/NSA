@@ -43,7 +43,7 @@ class AssociationController extends Controller
 
     public function update(CreateAssociation $request, Association $association)
     {
-        //dd($association);
+        //dd($request);
         $request->validate($request->rules());
         $association->update($request->all());
 

@@ -21,24 +21,24 @@
                 <td>{{$association->name}}</td>
                 <td>{{$association->email}}</td>
                 <td class="text-center">
-                @if(Auth::check()&&$association->user_id === Auth::user()->id)
-                <form action="{{ route('associations.destroy', $association) }}" method="POST">
-
-                    <a href="{{ route('associations.edit', $association) }}" title="Edit" class="text-dark">
-                        <i class="fa fa-edit fa-lg"></i>
-                    </a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
-                        <i class="fa fa-trash fa-lg"></i>
-                    </button>
-                    </form>
-                @else
-                    @if(Auth::check())
-                        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>
+                @if(Auth::check())
+                    <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>
+                    @if($association->user_id === Auth::user()->id)
+                    <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">
+                        <a href="{{ route('associations.edit', $association) }}" title="Edit" class="text-dark">
+                            <i class="fa fa-edit fa-lg"></i>
+                        </a>      
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
+                            <i class="fa fa-trash fa-lg"></i>
+                        </button>
+                        </form>
                     @else
-                        <a href="" class="fa fa-plus-circle fa-lg text-dark"></a><!-- TODO: change here for proposing the user to log -->
+                            
                     @endif
+                @else
+                    <a href="" class="fa fa-plus-circle fa-lg text-dark">you are disconnected</a>       
                 @endif
                 </td>              
             </tr>
