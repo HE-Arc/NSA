@@ -26,7 +26,15 @@ class ActivityController extends Controller
         $user = Auth::user();
         $userAssociations = $user->associations->sortBy('name'); //Retrieving sorted by name, so we can display sorted as well
 
-        return view('activities.create', compact('userAssociations'));
+        if(!$userAssociations->count())
+        {
+            return redirect()->route('activities.index')->withErrors('You must possess at least one association to access this page.');
+        }
+        else
+        {
+            return view('activities.create', compact('userAssociations'));
+        }
+        
     }
 
     public function store(CreateActivity $request)
