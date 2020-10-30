@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use App\Models\User;
-use App\Models\Association;
 
 use App\Http\Requests\CreateSubscription;
 
@@ -22,6 +21,6 @@ class SubscriptionController extends Controller
 
         $subscription->save();
 
-        return redirect()->back()->with('success','You subscribed to '.$association->name);
+        return redirect()->back()->with('success', 'You subscribed to '.$association->name);
     }
 }

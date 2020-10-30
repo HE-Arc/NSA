@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         return view('activities.index');
@@ -70,7 +75,7 @@ class ActivityController extends Controller
     {
         $image = Image::findOrFail($activity->id);
 
-        if (Storage::disk('public')->delete('/uploads/images/' . $image->storage_name)) {
+        if (Storage::disk('public')->delete('/uploads/images/'.$image->storage_name)) {
             $activity->delete();
         }
 

@@ -11,7 +11,7 @@ class Activity extends Model
 
     public function image()
     {
-        return $this->belongsTo(Image::class,'image_id');
+        return $this->belongsTo(Image::class, 'image_id');
     }
 
     public function participants()

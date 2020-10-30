@@ -24,8 +24,8 @@ class CreateAssociation extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|unique:associations|max:255',
-            'email'=>'required|email|unique:associations'
+            'name' => 'required|unique:associations|max:255',
+            'email'=> 'required|email|unique:associations',
         ];
     }
 }
