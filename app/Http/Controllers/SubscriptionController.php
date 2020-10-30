@@ -66,7 +66,7 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function unsubscribe(Subscription $subscription)
+    public function unsubscribe(Association $association)
     {
         dd($subscription);
     }
