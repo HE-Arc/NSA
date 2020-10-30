@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>{{old('description')}}
+        <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{old('description')}}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Create an association</button>
 </form>
