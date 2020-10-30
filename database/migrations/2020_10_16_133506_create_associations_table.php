@@ -21,7 +21,6 @@ class CreateAssociationsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
-
         });
     }
 
