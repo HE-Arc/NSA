@@ -16,7 +16,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigInteger('association_id')->unsigned()->index();
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->primary(['association_id','user_id']);
+            $table->primary(['association_id', 'user_id']);
             $table->foreign('association_id')->references('id')->on('associations');
             $table->foreign('user_id')->references('id')->on('users');
         });
