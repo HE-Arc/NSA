@@ -24,6 +24,7 @@ class SubscriptionController extends Controller
                         return $query->where('association_id', $association->id)
                         ->where('user_id', $user->id);
                     }),
+                    'exists:associations,id',    
                 ],
                 'user_id' => [
                     'required'
@@ -31,7 +32,8 @@ class SubscriptionController extends Controller
             ];
 
             $messages = [
-                'association_id.unique' => 'You are already subscribed.'
+                'association_id.unique' => 'You are already subscribed.',
+                'associations_id.exists' => 'Association does not exist.'
             ];
 
             $validator = Validator::make([
@@ -62,5 +64,10 @@ class SubscriptionController extends Controller
             return redirect()->back()
                             ->withErrors('Subscription failed');
         }
+    }
+
+    public function unsubscribe(Subscription $subscription)
+    {
+        dd($subscription);
     }
 }

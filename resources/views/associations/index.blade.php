@@ -15,14 +15,21 @@
             <th scope="col" class="text-center">Actions</th>
         </tr>
         </thead>
+        @php
+            $associationIds_subscribed = Auth::user()->subscriptions->pluck('id')->toArray();
+        @endphp
         @foreach($associations as $association)
             <tr style="cursor:pointer;z-index=99" onclick="window.location.href = '{{route('associations.show', $association)}}';">
                 <th scope="row">{{$association->id}}</td>
                 <td>{{$association->name}}</td>
                 <td>{{$association->email}}</td>
                 <td class="text-center">
-                @if(Auth::check())
-                    <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>
+                @auth
+                    @if(in_array($association->id,$associationIds_subscribed))
+                        <a href="{{route('unsubscribe',['subscription' => $association])}}" class="fa fa-check-circle fa-lg text-success"></a>
+                    @else
+                        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>                        
+                    @endif
                     @if($association->user_id === Auth::user()->id)
                     <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">
                         <a href="{{ route('associations.edit', $association) }}" title="Edit" class="text-dark">
@@ -39,7 +46,7 @@
                     @endif
                 @else
                     <a href="" class="fa fa-plus-circle fa-lg text-dark">you are disconnected</a>       
-                @endif
+                @endauth
                 </td>              
             </tr>
 
