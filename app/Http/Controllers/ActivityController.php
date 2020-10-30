@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         return view('activities.index');

@@ -8,6 +8,12 @@ use App\Http\Requests\CreateAssociation;
 
 class AssociationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $associations = Association::all();
@@ -17,15 +23,7 @@ class AssociationController extends Controller
 
     public function create()
     {
-        //TODO Change the authentification check way
-        if(Auth::check())
-        {
-            return view('associations.create');
-        }
-        else
-        {
-            return redirect()->back()->withErrors('Login required for this page');
-        }
+        return view('associations.create');
     }
 
     public function show(Association $association)
@@ -35,16 +33,6 @@ class AssociationController extends Controller
 
     public function edit(Association $association)
     {
-        //TODO Change the authentification check way
-        if(Auth::check())
-        {
-            return view('associations.edit');
-        }
-        else
-        {
-            return redirect()->back()->withErrors('Login required for this page');
-        }
-
         $user = auth()->user();
         $userID = $user->id;
         if ($association->user_id == $userID) {
