@@ -6,6 +6,7 @@ use App\Http\Requests\CreateActivity;
 use App\Models\Activity;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
@@ -21,6 +22,10 @@ class ActivityController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+
+        $userAssociations = $user->associations; //TODO : styleCI
+
         return view('activities.create');
     }
 
