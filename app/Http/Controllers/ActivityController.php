@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateActivity;
 use App\Models\Activity;
-use App\Models\Association;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -26,15 +25,11 @@ class ActivityController extends Controller
         $user = Auth::user();
         $userAssociations = $user->associations->sortBy('name'); //Retrieving sorted by name, so we can display sorted as well
 
-        if(!$userAssociations->count())
-        {
+        if (!$userAssociations->count()) {
             return redirect()->route('activities.index')->withErrors('You must possess at least one association to access this page.');
-        }
-        else
-        {
+        } else {
             return view('activities.create', compact('userAssociations'));
         }
-        
     }
 
     public function store(CreateActivity $request)
