@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Image extends Model
@@ -25,7 +25,7 @@ class Image extends Model
 
         error_log($image->storage_name);
 
-        if (Storage::disk('public')->delete('/uploads/images/' . $image->storage_name)) {
+        if (Storage::disk('public')->delete('/uploads/images/'.$image->storage_name)) {
             $image->delete();
         }
     }
@@ -39,11 +39,11 @@ class Image extends Model
         $imageName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $imageExtension = $file->getClientOriginalExtension();
 
-        $storingImageName = Str::slug($imageName . '_' . time()) . '.' . $imageExtension;
+        $storingImageName = Str::slug($imageName.'_'.time()).'.'.$imageExtension;
 
         $path = $file->storeAs('uploads/images', $storingImageName, 'public');
 
-        $image->src = '/storage/' . $path;
+        $image->src = '/storage/'.$path;
         $image->storage_name = $storingImageName;
         $image->title = $imageFullName;
         $image->alt = $imageName;
