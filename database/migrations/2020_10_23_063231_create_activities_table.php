@@ -20,7 +20,7 @@ class CreateActivitiesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->timestamps();
-            
+
             $table->foreignId('association_id')->nullable()->constrained(); //TODO : deactivate nullable after tests have been made
             $table->foreignId('image_id')->nullable()->constrained()->onDelete('set null');
         });

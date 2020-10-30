@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Association;
 use App\Http\Requests\CreateAssociation;
+use App\Models\Association;
+use Illuminate\Support\Facades\Auth;
 
 class AssociationController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
@@ -65,14 +64,13 @@ class AssociationController extends Controller
         $user = auth()->user();
         $userID = $user->id;
 
-        $association = new Association;
+        $association = new Association();
         $association->name = $request->name;
         $association->email = $request->email;
         $association->description = $request->description;
         $association->user_id = $userID;
         $association->save();
 
-        return redirect()->route('associations.index')->with('success','Association has been added successfully.');
-
+        return redirect()->route('associations.index')->with('success', 'Association has been added successfully.');
     }
 }

@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AssociationController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +30,3 @@ Route::resource('associations', AssociationController::class);
 Route::resource('activities', ActivityController::class);
 
 Route::get('/{user}/subscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
-
-

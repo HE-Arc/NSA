@@ -75,7 +75,7 @@ class ActivityController extends Controller
     {
         $image = Image::findOrFail($activity->id);
 
-        if (Storage::disk('public')->delete('/uploads/images/' . $image->storage_name)) {
+        if (Storage::disk('public')->delete('/uploads/images/'.$image->storage_name)) {
             $activity->delete();
         }
 
