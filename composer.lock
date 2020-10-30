@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47246f7c9e8c5ca32f6401c4a5cccbe3",
+    "content-hash": "92006abfb0afa0b489ce0387423263f1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6820,48 +6820,6 @@
                 }
             ],
             "time": "2020-09-28T06:39:44+00:00"
-        },
-        {
-            "name": "styleci/cli",
-            "version": "v0.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/StyleCI/CLI.git",
-                "reference": "adf9d9e76d9c6c0bd5dc99f38d512dc1827d35d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/StyleCI/CLI/zipball/adf9d9e76d9c6c0bd5dc99f38d512dc1827d35d9",
-                "reference": "adf9d9e76d9c6c0bd5dc99f38d512dc1827d35d9",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-zlib": "*",
-                "php": "^7.2.5 || ^8.0"
-            },
-            "suggest": {
-                "ext-curl": "Required for high performance HTTP transport"
-            },
-            "bin": [
-                "bin/styleci"
-            ],
-            "type": "library",
-            "extra": {
-                "bin-dir": "bin"
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "StyleCI",
-                    "email": "support@styleci.io"
-                }
-            ],
-            "description": "The CLI tool for StyleCI",
-            "time": "2020-10-10T14:34:31+00:00"
         },
         {
             "name": "theseer/tokenizer",
