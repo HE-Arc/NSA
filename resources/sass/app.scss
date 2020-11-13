@@ -12,3 +12,9 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+
+//Shadows under card objects
+.card-shadow {
+	/* -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
+	box-shadow: 0 2px 5px 0 rgba(61, 124, 61, 0.8) ,0 5px 10px 0 rgba(61, 124, 61, 0.40) ;
+}
