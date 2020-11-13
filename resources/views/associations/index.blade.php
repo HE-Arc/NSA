@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/subscribeButton.js') }}"></script>
+@endsection
+
 @section('content')
 @include('includes.validation')
+
+
+<link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
 
 <div class="container">
     <h1>Associations list</h1>
@@ -26,7 +33,7 @@
                 <td class="text-center">
                 @auth
                     @if(in_array($association->id,$associationIds_subscribed))
-                        <a href="{{route('unsubscribe',['subscription' => $association])}}" class="fa fa-check-circle fa-lg text-success"></a>
+                        <a href="{{route('unsubscribe',['subscription' => $association])}}" class="fa fa-check-circle fa-lg text-success" id="subscribeButton"></a>
                     @else
                         <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>                        
                     @endif
@@ -57,3 +64,5 @@
     <a href="{{ route('associations.create') }}" class="btn btn-primary btn-lg">Create Association</a>
 </div>
 @endsection
+
+
