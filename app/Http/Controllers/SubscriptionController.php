@@ -17,7 +17,7 @@ class SubscriptionController extends Controller
             $rule = [
                 'association_id' => [
                     'required',
-                    Rule::unique('subscriptions')->where(function ($query) use ($user,$association) {
+                    Rule::unique('subscriptions')->where(function ($query) use ($user, $association) {
                         return $query->where('association_id', $association->id)
                         ->where('user_id', $user->id);
                     }),
