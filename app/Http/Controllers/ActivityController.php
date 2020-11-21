@@ -56,7 +56,10 @@ class ActivityController extends Controller
 
     public function edit(Activity $activity)
     {
-        return view('activities.edit', compact('activity'));
+        $user = Auth::user();
+        $userAssociations = $user->associations->sortBy('name'); //Retrieving sorted by name, so we can display sorted as well
+
+        return view('activities.edit', compact('activity', 'userAssociations'));
     }
 
     public function update(CreateActivity $request, Activity $activity)

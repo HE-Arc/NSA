@@ -17100,6 +17100,34 @@ readers do not read off random characters that represent icons */
 
 .card-shadow {
   /* -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
-  box-shadow: 0 2px 5px 0 rgba(61, 124, 61, 0.8), 0 5px 10px 0 rgba(61, 124, 61, 0.4);
+  box-shadow: 16px 12px 0px 0px rgba(22, 167, 78, 0.322);
+}
+
+.bg-gradient-own-green {
+  background: #16a74eea linear-gradient(180deg, #55ca87, #16a74eea) repeat-x !important;
+}
+
+.btn-own-green {
+  background-color: #16A74E;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-own-green:hover {
+  background-color: #16a74ee3;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-own-red {
+  background-color: #e8423fe5;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-own-red:hover {
+  background-color: #E8423Fd0;
+  color: white;
+  font-weight: bold;
 }
 

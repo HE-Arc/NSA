@@ -6,7 +6,7 @@
 
 <div class="w-75 mx-auto card card-shadow border border-success font-weight-bold" style="min-height: 50em">
 
-    <div class="h1 card-header bg-gradient-success text-white font-weight-bold">Create an Association</div>
+    <div class="h1 card-header bg-gradient-own-green text-white font-weight-bold">Create an Association</div>
 
     <div class="card card-body h-100 justify-content-center pl-5 pr-5">
 
@@ -25,7 +25,7 @@
                 <label for="description">Description</label>
                 <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{old('description')}}</textarea>
             </div>
-            <button type="submit" class="mt-2 btn text-white font-weight-bold" style="background-color:#007E33">Creation</button>
+            <button type="submit" class="mt-2 btn btn-own-green">Creation</button>
 
         </form>
 

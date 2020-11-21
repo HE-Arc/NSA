@@ -6,7 +6,7 @@
 
 <div class="w-75 mx-auto card card-shadow border border-success font-weight-bold" style="min-height: 50em">
 
-    <div class="h1 card-header bg-gradient-success text-white font-weight-bold">Create an Activity</div>
+    <div class="h1 card-header bg-gradient-own-green text-white font-weight-bold">Create an Activity</div>
 
     <div class="card card-body h-100 justify-content-center pl-5 pr-5">
 
@@ -44,7 +44,7 @@
                     <input type="file" class="form-control" id="image" name="image" accept="image/png, image/jpg, image/jpeg, image/gif">
                 </div>
             </div>
-            <button type="submit" class="mt-2 btn text-white font-weight-bold" style="background-color:#007E33">Creation</button>
+            <button type="submit" class="mt-2 btn btn-own-green">Creation</button>
 
         </form>
 
