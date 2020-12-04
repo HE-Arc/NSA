@@ -25,7 +25,8 @@
         
         @auth
             @php
-                $associationIds_subscribed = Auth::user()->subscriptions->pluck('id')->toArray();
+                $subscriptions = Auth::user()->subscriptions();
+                $associationIds_subscribed = $subscriptions->pluck('id')->toArray();
             @endphp
         @endauth
         
@@ -37,7 +38,7 @@
                 <td class="text-center">
                 @auth
                     @if(in_array($association->id,$associationIds_subscribed))
-                        <a href="{{route('unsubscribe',['subscription' => $association])}}" class="fa fa-check-circle fa-lg text-success" id="subscribeButton"></a>
+                        <a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton" ></a>
                     @else
                         <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>                        
                     @endif

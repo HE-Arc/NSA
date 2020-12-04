@@ -43,11 +43,7 @@ class SubscriptionController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             } else {
-                $subscription = new Subscription();
-                $subscription->association_id = $association->id;
-                $subscription->user_id = $user->id;
-
-                $subscription->save();
+                $user->subscriptions()->attach($association->id);
 
                 return redirect()->back()->with('success', 'You subscribed to '.$association->name);
             }
@@ -57,8 +53,22 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function unsubscribe(Association $association)
+    public function unsubscribe(User $user, Association $association)
     {
-        dd($subscription);
+        if (Auth::id() == $user->id) {
+            $subscription = Subscription::where('association_id', $association->id)->where('user_id', $user->id)->first();
+
+            if ($subscription) {
+                $user->subscriptions()->detach($association->id);
+
+                return redirect()->back()->with('success', 'You unsubscribed to '.$association->name);
+            } else {
+                return redirect()->back()
+                            ->withErrors('This subscription does not exist.');
+            }
+        } else {
+            return redirect()->back()
+                            ->withErrors('Unsubscription failed');
+        }
     }
 }
