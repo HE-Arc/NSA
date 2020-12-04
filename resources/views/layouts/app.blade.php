@@ -18,14 +18,43 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
+
+     <!-- Custom styles for this template -->
+    <link href="{{asset('css/sidebar.css')}}" rel="stylesheet">
     @yield('styles')
+
 </head>
 
 <body>
     <div id="app">
+        <div class="d-flex toggled" id="wrapper">
+        <!-- Sidebar -->
+        @auth
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">Welcome <b>{{ Auth::user()->name }}!</b></div>
+            <div class="sidebar-heading2">Subscriptions</div>
+            <div class="list-group list-group-flush">
+                @foreach(Auth::user()->subscriptions()->get() as $associationSubscribed)
+                    <a href="{{route('associations.show', $associationSubscribed)}}" class="list-group-item list-group-item-action bg-light">{{$associationSubscribed->name}}</a>
+                @endforeach
+            </div>
+            <div class="list-group list-group-bottom">
+                <a class="list-group-item list-group-item-action bg-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                </a>
+            </div>
+        </div>
+        @endauth
+        <!-- /#sidebar-wrapper -->
+
+
+        <div id="page-content-wrapper">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+            <button class="fa fa-bars btn btn-light mr-3" id="menu-toggle"></button>
                 <a class="navbar-brand" href="{{ route('activities.index') }}">
                     {{ config('app.name', 'NSA') }}
                 </a>
@@ -64,8 +93,12 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
+                        
                         @else
+                        <!--
+                        
                         <li class="nav-item dropdown">
+                            
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
@@ -80,19 +113,37 @@
                                     @csrf
                                 </form>
                             </div>
-                        </li>
+                        </li>-->
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
 
+
+        <div class="container-fluid">
+
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 
+        </div>
+</div>
+    </div>
+</div>
     @yield('scripts')
+    <!-- Menu Toggle Script -->
+    <script>
+        $(document).ready(function(){
+
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    });
+    </script>
+
+    
 </body>
 
 </html>
