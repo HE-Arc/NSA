@@ -121,13 +121,9 @@
         </nav>
 
 
-        <div class="container-fluid">
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        @yield('content')
 
-        </div>
 </div>
     </div>
 </div>

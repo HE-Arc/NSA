@@ -18,7 +18,7 @@ class CreateActivitiesTable extends Migration
             $table->date('date');
             $table->string('location');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
 
             $table->foreignId('association_id')->constrained();
