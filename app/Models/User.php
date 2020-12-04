@@ -43,11 +43,16 @@ class User extends Authenticatable
 
     public function associations()
     {
-        return $this->hasMany("App\Models\Association");
+        return $this->hasMany('App\Models\Association');
     }
 
     public function subscriptions()
     {
-        return $this->belongsToMany("App\Models\Association", 'subscriptions');
+        return $this->belongsToMany('App\Models\Association', 'subscriptions');
+    }
+
+    public function activities()
+    {
+        return $this->belongsToMany('App\Models\Activity', 'subscriptions');
     }
 }

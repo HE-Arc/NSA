@@ -31,6 +31,9 @@ class CreateAssociationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associations');
+        Schema::table('associations', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->drop('asssociations');
+        });
     }
 }
