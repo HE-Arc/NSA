@@ -52,9 +52,17 @@ class AssociationController extends Controller
 
     public function destroy(Association $association)
     {
-        $association->delete();
+        $user = auth()->user();
+        $userID = $user->id;
 
-        return redirect()->route('associations.index')->with('success', 'Association has been deleted successfully.');
+        if($userID == $association->user_id) {
+            $association->delete();
+            return redirect()->route('associations.index')->with('success', 'Association has been deleted successfully.');
+        }
+        else {
+            return redirect()->back()->withErrors('You cannot delete this association.');
+        }
+        
     }
 
     public function store(CreateAssociation $request)

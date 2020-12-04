@@ -17,8 +17,8 @@ class CreateSubscriptionsTable extends Migration
             $table->bigInteger('association_id')->unsigned()->index();
             $table->bigInteger('user_id')->unsigned()->index();
             $table->primary(['association_id', 'user_id']);
-            $table->foreign('association_id')->references('id')->on('associations');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('association_id')->references('id')->on('associations')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
