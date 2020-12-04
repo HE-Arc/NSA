@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#subscribeButton').hover(function(){
+    $('.subscribeButton').hover(function(){
         $(this).removeClass('text-success');
         $(this).removeClass('fa-check-circle');
         $(this).addClass('text-danger');
