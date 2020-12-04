@@ -30,4 +30,4 @@ Route::resource('associations', AssociationController::class);
 Route::resource('activities', ActivityController::class);
 
 Route::get('/{user}/subscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
-Route::get('/unsubscribe/{subscription}', [App\Http\Controllers\SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+Route::get('/{user}/unsubscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
