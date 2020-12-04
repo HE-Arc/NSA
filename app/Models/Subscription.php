@@ -13,5 +13,4 @@ class Subscription extends Model
 
     //so when saved there's not columns `updated_at`, `created_at`
     public $timestamps = false;
-
 }

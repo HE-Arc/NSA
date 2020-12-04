@@ -56,20 +56,17 @@ class SubscriptionController extends Controller
     public function unsubscribe(User $user, Association $association)
     {
         if (Auth::id() == $user->id) {
-            $subscription = Subscription::where('association_id',$association->id)->where('user_id',$user->id)->first();
-            
-            if($subscription){
+            $subscription = Subscription::where('association_id', $association->id)->where('user_id', $user->id)->first();
+
+            if ($subscription) {
                 $user->subscriptions()->detach($association->id);
+
                 return redirect()->back()->with('success', 'You unsubscribed to '.$association->name);
-            }
-            else
-            {
+            } else {
                 return redirect()->back()
                             ->withErrors('This subscription does not exist.');
             }
-        }
-        else
-        {
+        } else {
             return redirect()->back()
                             ->withErrors('Unsubscription failed');
         }
