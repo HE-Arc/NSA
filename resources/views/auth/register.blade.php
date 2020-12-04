@@ -2,6 +2,17 @@
 
 @section('content')
 
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/elementmove.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        const img = document.querySelector('#logo-form');
+        new HoverButton(img);
+    });
+</script>
+@endsection
+
 <link href="{{ asset('css/loginregister.css') }}" rel="stylesheet">
 <link href="{{ asset('css/util.css') }}" rel="stylesheet">
 
@@ -9,7 +20,7 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-pic">
-                <img src="{{ asset('images/logo_nsa.png') }}" alt="IMG">
+                <img id="logo-form" src="{{ asset('images/logo_nsa.png') }}" alt="IMG">
             </div>
 
             <form method="POST" action="{{ route('register') }}" class="login100-form validate-form" style="font-weight:bold">

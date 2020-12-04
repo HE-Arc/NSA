@@ -56,10 +56,15 @@
                 <div class="col-sm align-self-center">
                     <button type="submit" class="btn btn-own-green text-white font-weight-bold">Update</button>
                 </div>
+                @if(!is_null($activity->image))
                 <div class="col-sm"></div>
                 <div class="text-center col-sm align-self-center">
-                    <img width="100em" height="100em" src="{{ $activity->image->src }}" /> <!-- @TODO -->
+                    @php
+                    error_log($activity->image->src)
+                    @endphp
+                    <img width="100em" height="100em" src="{{ $activity->image->src }}" />
                 </div>
+                @endif
             </div>
         </form>
     </div>
