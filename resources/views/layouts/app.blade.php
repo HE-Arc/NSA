@@ -57,7 +57,9 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+            @auth
             <button class="fa fa-bars btn btn-light mr-3" id="menu-toggle"></button>
+            @endauth
                 <a class="navbar-brand" href="{{ route('activities.index') }}">
                     {{ config('app.name', 'NSA') }}
                 </a>
