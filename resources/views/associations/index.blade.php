@@ -22,9 +22,13 @@
             <th scope="col" class="text-center">Actions</th>
         </tr>
         </thead>
-        @php
-            $associationIds_subscribed = Auth::user()->subscriptions->pluck('id')->toArray();
-        @endphp
+        
+        @auth
+            @php
+                $associationIds_subscribed = Auth::user()->subscriptions->pluck('id')->toArray();
+            @endphp
+        @endauth
+        
         @foreach($associations as $association)
             <tr style="cursor:pointer;z-index=99" onclick="window.location.href = '{{route('associations.show', $association)}}';">
                 <th scope="row">{{$association->id}}</td>
@@ -52,7 +56,7 @@
                             
                     @endif
                 @else
-                    <a href="" class="fa fa-plus-circle fa-lg text-dark">you are disconnected</a>       
+                    <i>You are disconnected</i>      
                 @endauth
                 </td>              
             </tr>
