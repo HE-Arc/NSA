@@ -38,6 +38,7 @@ class CreateAssociation extends FormRequest
                 'email',
                 Rule::unique('associations', 'email')->ignore($this->association),
             ],
+            'description' => 'required|string|min:2|max:3000',
         ];
     }
 }
