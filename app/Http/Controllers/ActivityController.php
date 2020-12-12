@@ -38,19 +38,13 @@ class ActivityController extends Controller
                     try {
                         $activities = Activity::whereDate('date', Carbon::parse($_GET['date']))->get();
                         if (count($activities) == 0) {
-                            $activities = Activity::all();
-
-                            return view('activities.index', ['activities' => $activities])->withErrors('No activities for the selected date !');
+                            return redirect()->back()->withErrors('No activities for the selected date !');
                         }
                     } catch (\Exception $e) {
-                        $activities = Activity::all();
-
-                        return view('activities.index', ['activities' => $activities])->withErrors('Date format not valide !');
+                        return redirect()->back()->withErrors('Date format not valide !');
                     }
                 } else {
-                    $activities = Activity::all();
-
-                    return view('activities.index', ['activities' => $activities])->withErrors('Date format not valide !');
+                    return redirect()->back()->withErrors('Date format not valide !');
                 }
             break;
             default:
@@ -70,6 +64,11 @@ class ActivityController extends Controller
         } else {
             return view('activities.create', compact('userAssociations'));
         }
+    }
+
+    public function show(Activity $activity)
+    {
+        return view('activities.show', compact('activity'));
     }
 
     public function store(CreateActivity $request)

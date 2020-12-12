@@ -14,8 +14,11 @@ class CreateParticipationsTable extends Migration
     public function up()
     {
         Schema::create('participations', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('activity_id')->constrained();
+            $table->bigInteger('activity_id')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->primary(['activity_id', 'user_id']);
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

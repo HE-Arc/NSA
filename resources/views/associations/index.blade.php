@@ -4,27 +4,31 @@
 <script type="text/javascript" src="{{ asset('js/subscribeButton.js') }}"></script>
 @endsection
 
+@section('styles')
+<link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 @include('includes.validation')
 
 
-<link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
 
-<div class="container">
-    <h1>Associations list</h1>
-    <div class="row justify-content-center">
-    <table class="table table-striped bg-white">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col" class="text-center">Actions</th>
-        </tr>
-        </thead>
-        
-        @auth
-            @php
+<div class="card-container">
+
+    <div class="container card_item">
+        <h1 class="mt-3 mb-5" style="font-weight: bold;">Associations list</h1>
+        <div class="mb-5 row justify-content-center">
+            <table class="table table-striped bg-white">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                @auth
+                @php
                 $subscriptions = Auth::user()->subscriptions();
                 $associationIds_subscribed = $subscriptions->pluck('id')->toArray();
             @endphp
@@ -32,15 +36,23 @@
         
         @foreach($associations as $association)
             <tr style="cursor:pointer;z-index=99" onclick="window.location.href = '{{route('associations.show', $association)}}';">
-                <th scope="row">{{$association->id}}</td>
                 <td>{{$association->name}}</td>
                 <td>{{$association->email}}</td>
                 <td class="text-center">
                 @auth
                     @if(in_array($association->id,$associationIds_subscribed))
-                        <a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton" ></a>
+                    
+                        <form method="POST" style="display:inline" action="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}">
+                            @csrf
+                            <button type="submit" class="btn m-0 p-0"><span class="fa fa-check-circle fa-lg text-success subscribeButton"></span></button>
+                        </form>
+                        <!--<a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton" ></a>-->
                     @else
-                        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>                        
+                        <form method="POST" style="display:inline" action="{{route('subscribe',['association' => $association, 'user' => Auth::user()])}}">
+                            @csrf
+                            <button type="submit" class="btn m-0 p-0"><span class="fa fa-plus-circle fa-lg text-dark"></span></button>
+                        </form>
+                        <!--<a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>-->                        
                     @endif
                     @if($association->user_id === Auth::user()->id)
                     <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">
@@ -59,15 +71,15 @@
                 @else
                     <i>You are disconnected</i>      
                 @endauth
-                </td>              
-            </tr>
+                </td>
+                </tr>
+                @endforeach
+            </table>
 
-        @endforeach
-        </table>
-        
+        </div>
+        <a href="{{ route('associations.create') }}" class="btn btn-own-green btn-lg mb-3">Create Association</a>
     </div>
-    <a href="{{ route('associations.create') }}" class="btn btn-primary btn-lg">Create Association</a>
+
 </div>
+
 @endsection
-
-
