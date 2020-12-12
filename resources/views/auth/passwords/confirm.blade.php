@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
+@section('styles')
+<link href="{{asset('css/loginregister.css')}}" rel="stylesheet">
+@endsection
+
 @section('content')
+<div class="card-container">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+                <div class="card-header"><h3>{{ __('Confirm Password') }}</h3></div>
 
                 <div class="card-body">
                     {{ __('Please confirm your password before continuing.') }}
@@ -34,7 +39,7 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="login100-form-btn btn-own-green" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
@@ -45,5 +50,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

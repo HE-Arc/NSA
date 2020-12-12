@@ -1,8 +1,145 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+// Icons : font-awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+//Shadows under card objects
+
+.card-container {
+    width: 100%;
+    min-height: calc(100vh - 55px);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+    background: -webkit-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+    background: -o-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+    background: -moz-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+    background: linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+}
+
+.card-style {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 50em;
+	
+	border: 2px solid gray;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-style-show {
+    min-height: 0 !important;
+}
+
+//Class for our own special green gradient
+.bg-gradient-own-green {
+    background: #16a74eea linear-gradient(180deg, #55ca87, #16a74eea) repeat-x !important;
+}
+
+//Class for our own special green button
+.btn-own-green {
+    background-color: #16a74e;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-own-green:hover {
+    background-color: #16a74ee3;
+    color: white;
+    font-weight: bold;
+}
+
+//Class for our own special red button
+.btn-own-red {
+    background-color: #e8423fe5;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-own-red:hover {
+	background-color:#E8423Fd0;
+	color: white;
+	font-weight: bold;
+}
+
+ 
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+	display: flex;
+
+	background: -webkit-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+	background: -o-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+	background: -moz-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+	background: linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);	
+	
+    
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  .card-item {
+    background: #ffffff70;
+    padding: 2%;
+	flex-grow: 1;
+	border-radius: 10px;
+    border: 2px solid rgb(107, 107, 107);
+	
+
+    line-height: 2rem;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+  .flex-item {
+    background: #ffffff;
+    padding: 2%;
+	margin: 2%;
+	flex-grow: 1;
+	border-radius: 10px;
+	border: 2px solid rgb(107, 107, 107);
+	
+
+    line-height: 2rem;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.alert-fixed {
+    position:fixed; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999;
+}
