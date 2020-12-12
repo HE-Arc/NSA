@@ -74,8 +74,10 @@ class ActivityController extends Controller
         $activity->date = $request->date;
 
         if ($request->image) {
-            if ($request->image->isValid()) {
+            if (!is_null($activity->image_id)) {
                 Image::destroyAndDelete($activity->image_id);
+            }
+            if ($request->image->isValid()) {
                 $activity->image_id = Image::uploadImage($request->image);
             }
         }
