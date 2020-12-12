@@ -6,6 +6,8 @@
 @php
 $activities = Auth::user()->activities();
 $activitiesIds_Joined = $activities->pluck('id')->toArray();
+
+$associations_owner = Auth::user()->associations()->pluck('id')->toArray();
 @endphp
 @endauth
 
@@ -63,6 +65,19 @@ $activitiesIds_Joined = $activities->pluck('id')->toArray();
                 <h5>{{$activity->description}}</h5>
             </div>
         </div>
+
+        @if(in_array($activity->association_id,$associations_owner))
+        <form action="{{ route('activities.destroy', $activity) }}" method="POST" style="display:inline">
+            <a href="{{ route('activities.edit', $activity) }}" title="Edit" class="text-dark">
+                <i class="fa fa-edit fa-lg"></i>
+            </a>      
+            @csrf
+            @method('DELETE')
+            <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
+                <i class="fa fa-trash fa-lg"></i>
+            </button>
+        </form>
+        @endif
     </div>
 </div>
 
