@@ -111,6 +111,13 @@
     width: 400px;
   }
   
+  @media screen and (max-width:800px)
+  {
+    .article-image{
+      display:none;
+    }
+  }
+
   @media screen and (min-width: 800px) {
     .columns,
     .column {

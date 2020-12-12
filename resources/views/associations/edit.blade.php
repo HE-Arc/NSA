@@ -10,10 +10,6 @@
 
         <div class="h1 card-header font-weight-bold">Update an Association</div>
 
-        <div class="mt-2 ml-2">
-            <a class="btn btn-own-red" href="{{ route('associations.index') }}" title="Go back"><i class="fas fa-backward ">&nbsp;&nbsp;</i>Go back</a>
-        </div>
-
         <div class="card card-body h-100 justify-content-center pl-5 pr-5 border-top-0">
 
             <form action="{{ route('associations.update', $association) }}" method="POST">

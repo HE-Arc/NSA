@@ -10,10 +10,6 @@
 
         <div class="h1 card-header font-weight-bold">Update an Activity</div>
 
-        <div class="mt-2 ml-2">
-            <a class="btn btn-own-red" href="{{ route('activities.index') }}" title="Go back"><i class="fas fa-backward ">&nbsp;&nbsp;</i>Go back</a>
-        </div>
-
         <div class="card card-body h-100 justify-content-center pl-5 pr-5 border-top-0">
 
             <form method="POST" action="{{ route('activities.update', $activity) }}" enctype="multipart/form-data">
@@ -61,9 +57,6 @@
                     @if(!is_null($activity->image))
                     <div class="col-sm"></div>
                     <div class="text-center col-sm align-self-center">
-                        @php
-                        error_log($activity->image->src)
-                        @endphp
                         <img width="100em" height="100em" src="{{ $activity->image->src }}" />
                     </div>
                     @endif

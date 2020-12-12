@@ -73,7 +73,7 @@ foreach($activities as $activity)
          {{$firstActivity->getWrappedTinyDesc()}}
        </p>
        <footer class="article-info">
-          <span>{{$firstActivity->date}}</span>
+          <span>{{date('d.m.Y', strtotime($activity->date))}}</span>
           @auth
           <span>
             @if(in_array($firstActivity->id,$activitiesIds_Joined))
@@ -111,7 +111,7 @@ foreach($activities as $activity)
               {{$activity->getWrappedBigDesc()}}
             </p>
             <footer class="article-info">
-                <span>{{$activity->date}}</span>
+                <span>{{date('d.m.Y', strtotime($activity->date))}}</span>
                 @auth
                 <span>
                   @if(in_array($activity->id,$activitiesIds_Joined))
@@ -152,7 +152,7 @@ foreach($activities as $activity)
         {{$activity->getWrappedTinyDesc()}}
         </p>
         <footer class="article-info">
-        <span>{{$activity->date}}</span>
+        <span>{{date('d.m.Y', strtotime($activity->date))}}</span>
         @auth
         <span>
           @if(in_array($activity->id,$activitiesIds_Joined))

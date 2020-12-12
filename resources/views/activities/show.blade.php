@@ -19,7 +19,7 @@ $associations_owner = Auth::user()->associations()->pluck('id')->toArray();
 
         <div class="form-row mb-3">
             <div class="form-group col-sm">
-                <h5><strong>Date :</strong> {{$activity->date}}</h5>
+                <h5><strong>Date :</strong> {{date('d.m.Y', strtotime($activity->date))}}</h5>
             </div>
             <div class="form-group col-sm">
                 @auth
@@ -52,10 +52,8 @@ $associations_owner = Auth::user()->associations()->pluck('id')->toArray();
         @if(!is_null($activity->image))
         <div class="form-row mb-2">    
             <div class="text-center col-sm align-self-center">
-                @php
-                error_log($activity->image->src)
-                @endphp
-                <img src="{{ $activity->image->src }}" />
+
+                <img style="max-width:100%" src="{{ $activity->image->src }}" />
             </div>         
         </div>
         @endif
@@ -69,12 +67,11 @@ $associations_owner = Auth::user()->associations()->pluck('id')->toArray();
         @if(in_array($activity->association_id,$associations_owner))
         <form action="{{ route('activities.destroy', $activity) }}" method="POST" style="display:inline">
             <a href="{{ route('activities.edit', $activity) }}" title="Edit" class="text-dark">
-                <i class="fa fa-edit fa-lg"></i>
+                <i class="btn btn-outline-success fa fa-edit fa-lg pt-2 pb-2 pl-3"></i>
             </a>      
             @csrf
             @method('DELETE')
-            <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
-                <i class="fa fa-trash fa-lg"></i>
+            <button type="submit" title="Delete" class="btn btn-outline-danger fa fa-trash fa-lg pt-2 pb-2 pl-3 pr-3">
             </button>
         </form>
         @endif
