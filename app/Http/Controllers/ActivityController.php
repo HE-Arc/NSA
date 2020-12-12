@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateActivity;
 use App\Models\Activity;
 use App\Models\Image;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,44 @@ class ActivityController extends Controller
 
     public function index()
     {
-        $activities = Activity::all();  
+        $filter = null;
+        $activities = null;
+        if (isset($_GET['filter'])) {
+            $filter = $_GET['filter'];
+        } else {
+            $filter = 'all';
+        }
+
+        switch ($filter) {
+            case 'all':
+                $activities = Activity::all();
+            break;
+            case 'today':
+                $activities = Activity::whereDate('date', Carbon::today())->get();
+            break;
+            case 'date':
+                if (isset($_GET['date'])) {
+                    try {
+                        $activities = Activity::whereDate('date', Carbon::parse($_GET['date']))->get();
+                        if (count($activities) == 0) {
+                            $activities = Activity::all();
+
+                            return view('activities.index', ['activities' => $activities])->withErrors('No activities for the selected date !');
+                        }
+                    } catch (\Exception $e) {
+                        $activities = Activity::all();
+
+                        return view('activities.index', ['activities' => $activities])->withErrors('Date format not valide !');
+                    }
+                } else {
+                    $activities = Activity::all();
+
+                    return view('activities.index', ['activities' => $activities])->withErrors('Date format not valide !');
+                }
+            break;
+            default:
+                $activities = Activity::all();
+        }
 
         return view('activities.index', ['activities' => $activities]);
     }
@@ -97,7 +135,7 @@ class ActivityController extends Controller
     {
         $image = Image::findOrFail($activity->id);
 
-        if (Storage::disk('public')->delete('/uploads/images/' . $image->storage_name)) {
+        if (Storage::disk('public')->delete('/uploads/images/'.$image->storage_name)) {
             $activity->delete();
         }
 
