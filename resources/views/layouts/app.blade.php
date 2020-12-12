@@ -41,7 +41,7 @@
                     @endforeach
                 </div>
                 <div class="list-group list-group-bottom">
-                    <a class="list-group-item list-group-item-action bg-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="list-group-item list-group-item-action bg-dark text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
