@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('activities.index');
-});
+Route::get('/',[App\Http\Controllers\ActivityController::class,'index'])->name('index');
 
 Auth::routes();
 

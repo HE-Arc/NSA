@@ -11,7 +11,6 @@ var activities = [
         [$activity],
     @endforeach
     ];
-
     
     function filterSelection(c){
         if(c=="today"){
@@ -42,7 +41,7 @@ var activities = [
 </nav>
 <ul class="flex-container pl-5 pr-5">
     <li class="row justify-content-center">
-    @foreach($activities as $activity)
+    @foreach($activities ?? '' as $activity)
     <div class="flex-item">
         <h1>{{$activity->title}}</h1>
         <p>{{$activity->description}}</p>
