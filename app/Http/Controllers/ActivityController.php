@@ -134,22 +134,16 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         $associations_owned = auth()->user()->associations()->pluck('id')->toArray();
-        
-        if(in_array($activity->association_id,$associations_owned))
-        {
-            if(!is_null($activity->image))
-            {
-                
-                Storage::disk('public')->delete('/uploads/images/'.$activity->image->storage_name);
 
+        if (in_array($activity->association_id, $associations_owned)) {
+            if (!is_null($activity->image)) {
+                Storage::disk('public')->delete('/uploads/images/'.$activity->image->storage_name);
             }
-            
+
             $activity->delete();
 
             return redirect()->route('activities.index')->with('success', 'Activity has been deleted successfully.');
-        }
-        else
-        {
+        } else {
             return redirect()->back()->withErrors('You cannot delete this activity.');
         }
     }
