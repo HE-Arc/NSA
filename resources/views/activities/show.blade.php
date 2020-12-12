@@ -63,7 +63,7 @@ $associations_owner = Auth::user()->associations()->pluck('id')->toArray();
                 <h5>{{$activity->description}}</h5>
             </div>
         </div>
-
+        @auth
         @if(in_array($activity->association_id,$associations_owner))
         <form action="{{ route('activities.destroy', $activity) }}" method="POST" style="display:inline">
             <a href="{{ route('activities.edit', $activity) }}" title="Edit" class="text-dark">
@@ -75,6 +75,7 @@ $associations_owner = Auth::user()->associations()->pluck('id')->toArray();
             </button>
         </form>
         @endif
+        @endauth
     </div>
 </div>
 
