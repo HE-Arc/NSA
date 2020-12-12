@@ -17,7 +17,7 @@
 
 .card-container {
     width: 100%;
-    /*min-height: 100vh;*/
+    min-height: calc(100vh - 55px);
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -27,6 +27,7 @@
     justify-content: center;
     align-items: center;
     padding: 15px;
+    
     background: -webkit-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
     background: -o-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
     background: -moz-linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
@@ -48,6 +49,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.card-style-show {
+    min-height: 0 !important;
 }
 
 //Class for our own special green gradient
@@ -103,7 +108,7 @@
     justify-content: space-around;
   }
 
-  .card_item {
+  .card-item {
     background: #ffffff70;
     padding: 2%;
 	flex-grow: 1;

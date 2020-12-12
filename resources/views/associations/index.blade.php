@@ -13,7 +13,7 @@
 
 <div class="card-container">
 
-    <div class="container card_item">
+    <div class="container card-item">
         <h1 class="mt-3 mb-5" style="font-weight: bold;">Associations list</h1>
         <div class="mb-5 row justify-content-center">
             <table class="table table-striped bg-white">

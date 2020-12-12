@@ -5517,6 +5517,7 @@ a.badge-dark.focus {
 .alert {
   position: relative;
   padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
@@ -17099,7 +17100,7 @@ readers do not read off random characters that represent icons */
 
 .card-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 55px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17117,6 +17118,10 @@ readers do not read off random characters that represent icons */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.card-style-show {
+  min-height: 0 !important;
 }
 
 .bg-gradient-own-green {
@@ -17157,7 +17162,7 @@ readers do not read off random characters that represent icons */
   justify-content: space-around;
 }
 
-.card_item {
+.card-item {
   background: #ffffff70;
   padding: 2%;
   flex-grow: 1;
