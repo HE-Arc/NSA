@@ -32,7 +32,7 @@ class ActivityController extends Controller
             break;
             case 'today':
                 $activities = Activity::whereDate('date', Carbon::today())->get();
-                
+
             break;
             case 'joined':
                 $activities = Auth::user()->activities;
