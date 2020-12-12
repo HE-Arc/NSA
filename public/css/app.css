@@ -17097,9 +17097,25 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
-.card-shadow {
-  /* -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
-  box-shadow: 16px 12px 0px 0px rgba(22, 167, 78, 0.322);
+.card-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+}
+
+.card-style {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid gray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .bg-gradient-own-green {
@@ -17107,7 +17123,7 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-own-green {
-  background-color: #16A74E;
+  background-color: #16a74e;
   color: white;
   font-weight: bold;
 }
@@ -17125,8 +17141,31 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-own-red:hover {
-  background-color: #E8423Fd0;
+  background-color: #e8423fd0;
   color: white;
   font-weight: bold;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  background: linear-gradient(-45deg, #e8423f 50%, #16a74e 50%);
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  background: #ffffff;
+  padding: 2%;
+  margin: 2%;
+  flex-grow: 1;
+  border-radius: 10px;
+  border: 2px solid #6b6b6b;
+  line-height: 2rem;
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
