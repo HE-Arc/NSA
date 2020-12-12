@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateActivity;
 use App\Models\Activity;
 use App\Models\Image;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,38 @@ class ActivityController extends Controller
 
     public function index()
     {
-        $activities = Activity::all();
+        $filter = null;
+        $activities = null;
+        if (isset($_GET['filter'])) {
+            $filter = $_GET['filter'];
+        } else {
+            $filter = 'all';
+        }
+
+        switch ($filter) {
+            case 'all':
+                $activities = Activity::all();
+            break;
+            case 'today':
+                $activities = Activity::whereDate('date', Carbon::today())->get();
+            break;
+            case 'date':
+                if (isset($_GET['date'])) {
+                    try {
+                        $activities = Activity::whereDate('date', Carbon::parse($_GET['date']))->get();
+                        if (count($activities) == 0) {
+                            return redirect()->back()->withErrors('No activities for the selected date !');
+                        }
+                    } catch (\Exception $e) {
+                         return redirect()->back()->withErrors('Date format not valide !');
+                    }
+                } else {
+                    return redirect()->back()->withErrors('Date format not valide !');
+                }
+            break;
+            default:
+                $activities = Activity::all();
+        }
 
         return view('activities.index', ['activities' => $activities]);
     }
@@ -32,6 +64,11 @@ class ActivityController extends Controller
         } else {
             return view('activities.create', compact('userAssociations'));
         }
+    }
+
+    public function show(Activity $activity)
+    {
+        return view('activities.show', compact('activity'));
     }
 
     public function store(CreateActivity $request)

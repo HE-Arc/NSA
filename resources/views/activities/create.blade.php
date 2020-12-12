@@ -6,7 +6,7 @@
 
 <div class="card-container">
 
-    <div class="w-75 mx-auto card card-style font-weight-bold" style="min-height: 50em">
+    <div class="w-75 mx-auto card card-style font-weight-bold">
 
         <div class="h1 card-header font-weight-bold">Create an Activity</div>
 

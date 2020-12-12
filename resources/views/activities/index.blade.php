@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-@include('includes.validation')
 
 @php
 $willBeBig = function($index){return $index%2==0;};
@@ -37,6 +36,18 @@ foreach($activities as $activity)
   $activitiesIds_Joined = $activities->pluck('id')->toArray();
 @endphp
 @endauth
+
+@include('includes.validation')
+
+<nav class="navbar navbar-light bg-light" style="background-color: #16a74e;">
+    <a class="nav-link" href="?filter=all">All activities</a>
+    <a class="nav-link" href="?filter=today">Today</a>
+    <form action="" method="get" class="form-inline">
+    <input type="hidden" name="filter" value="date">
+    <input type="date" class="form-control mr-sm-2" name="date" require>
+    <input class="btn btn-outline-primary" type="submit" value="Search">
+    </form>
+</nav>
 
 <main class="main columns">
 

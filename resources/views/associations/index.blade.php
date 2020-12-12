@@ -13,21 +13,22 @@
 
 
 
-<div class="container">
-    <h1>Associations list</h1>
-    <div class="row justify-content-center">
-    <table class="table table-striped bg-white">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col" class="text-center">Actions</th>
-        </tr>
-        </thead>
-        
-        @auth
-            @php
+<div class="card-container">
+
+    <div class="container card_item">
+        <h1 class="mt-3 mb-5" style="font-weight: bold;">Associations list</h1>
+        <div class="mb-5 row justify-content-center">
+            <table class="table table-striped bg-white">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                @auth
+                @php
                 $subscriptions = Auth::user()->subscriptions();
                 $associationIds_subscribed = $subscriptions->pluck('id')->toArray();
             @endphp
@@ -35,7 +36,6 @@
         
         @foreach($associations as $association)
             <tr style="cursor:pointer;z-index=99" onclick="window.location.href = '{{route('associations.show', $association)}}';">
-                <th scope="row">{{$association->id}}</td>
                 <td>{{$association->name}}</td>
                 <td>{{$association->email}}</td>
                 <td class="text-center">
@@ -71,15 +71,15 @@
                 @else
                     <i>You are disconnected</i>      
                 @endauth
-                </td>              
-            </tr>
+                </td>
+                </tr>
+                @endforeach
+            </table>
 
-        @endforeach
-        </table>
-        
+        </div>
+        <a href="{{ route('associations.create') }}" class="btn btn-own-green btn-lg mb-3">Create Association</a>
     </div>
-    <a href="{{ route('associations.create') }}" class="btn btn-primary btn-lg">Create Association</a>
+
 </div>
+
 @endsection
-
-

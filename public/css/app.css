@@ -17112,6 +17112,7 @@ readers do not read off random characters that represent icons */
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
+  min-height: 50em;
   border: 2px solid gray;
   display: flex;
   flex-wrap: wrap;
@@ -17141,7 +17142,7 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-own-red:hover {
-  background-color: #e8423fd0;
+  background-color: #E8423Fd0;
   color: white;
   font-weight: bold;
 }
@@ -17156,6 +17157,18 @@ readers do not read off random characters that represent icons */
   justify-content: space-around;
 }
 
+.card_item {
+  background: #ffffff70;
+  padding: 2%;
+  flex-grow: 1;
+  border-radius: 10px;
+  border: 2px solid #6b6b6b;
+  line-height: 2rem;
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .flex-item {
   background: #ffffff;
   padding: 2%;
@@ -17167,5 +17180,12 @@ readers do not read off random characters that represent icons */
   color: black;
   font-weight: bold;
   font-size: 1rem;
+}
+
+.alert-fixed {
+  position: fixed;
+  left: 0px;
+  width: 100%;
+  z-index: 9999;
 }
 
