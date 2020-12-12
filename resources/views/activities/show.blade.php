@@ -15,7 +15,7 @@ $activitiesIds_Joined = $activities->pluck('id')->toArray();
 
     <div class="text-center w-75 mx-auto card card-style card-style-show font-weight-bold pl-4 pb-4 pr-4 pt-4">
 
-        <div class="form-row pb-2">
+        <div class="form-row mb-3">
             <div class="form-group col-sm">
                 <h5><strong>Date :</strong> {{$activity->date}}</h5>
             </div>
@@ -41,7 +41,7 @@ $activitiesIds_Joined = $activities->pluck('id')->toArray();
             </div>
         </div>
 
-        <div class="form-row mb-2">
+        <div class="form-row mb-3">
             <div class="text-center col-sm align-self-center">
                 <h1>{{$activity->title}}</h1>
             </div>
