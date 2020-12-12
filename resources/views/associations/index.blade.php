@@ -10,64 +10,65 @@
 
 <link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
 
-<div class="container">
-    <h1>Associations list</h1>
-    <div class="row justify-content-center">
-    <table class="table table-striped bg-white">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col" class="text-center">Actions</th>
-        </tr>
-        </thead>
-        
-        @auth
-            @php
+<div class="card-container" style="align-items:baseline">
+
+    <div class="mt-5 container card_item">
+        <h1 class="mb-4" style="font-weight: bold;">Associations list</h1>
+        <div class="row justify-content-center">
+            <table class="table table-striped bg-white">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                @auth
+                @php
                 $subscriptions = Auth::user()->subscriptions();
                 $associationIds_subscribed = $subscriptions->pluck('id')->toArray();
-            @endphp
-        @endauth
-        
-        @foreach($associations as $association)
-            <tr style="cursor:pointer;z-index=99" onclick="window.location.href = '{{route('associations.show', $association)}}';">
-                <th scope="row">{{$association->id}}</td>
-                <td>{{$association->name}}</td>
-                <td>{{$association->email}}</td>
-                <td class="text-center">
-                @auth
-                    @if(in_array($association->id,$associationIds_subscribed))
-                        <a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton" ></a>
-                    @else
-                        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>                        
-                    @endif
-                    @if($association->user_id === Auth::user()->id)
-                    <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">
-                        <a href="{{ route('associations.edit', $association) }}" title="Edit" class="text-dark">
-                            <i class="fa fa-edit fa-lg"></i>
-                        </a>      
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
-                            <i class="fa fa-trash fa-lg"></i>
-                        </button>
-                        </form>
-                    @else
-                            
-                    @endif
-                @else
-                    <i>You are disconnected</i>      
+                @endphp
                 @endauth
-                </td>              
-            </tr>
 
-        @endforeach
-        </table>
-        
+                @foreach($associations as $association)
+                <tr style="cursor:pointer;z-index=99" onclick="window.location.href = '{{route('associations.show', $association)}}';">
+                    <td>{{$association->name}}</td>
+                    <td>{{$association->email}}</td>
+                    <td class="text-center">
+                        @auth
+                        @if(in_array($association->id,$associationIds_subscribed))
+                        <a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton"></a>
+                        @else
+                        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>
+                        @endif
+                        @if($association->user_id === Auth::user()->id)
+                        <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">
+                            <a href="{{ route('associations.edit', $association) }}" title="Edit" class="text-dark">
+                                <i class="fa fa-edit fa-lg"></i>
+                            </a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </button>
+                        </form>
+                        @else
+
+                        @endif
+                        @else
+                        <i>You are disconnected</i>
+                        @endauth
+                    </td>
+                </tr>
+
+                @endforeach
+            </table>
+
+        </div>
+        <a href="{{ route('associations.create') }}" class="btn btn-own-green btn-lg mt-4">Create Association</a>
     </div>
-    <a href="{{ route('associations.create') }}" class="btn btn-primary btn-lg">Create Association</a>
+
 </div>
+
 @endsection
-
-

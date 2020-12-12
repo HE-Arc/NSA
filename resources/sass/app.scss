@@ -103,6 +103,21 @@
     justify-content: space-around;
   }
 
+  .card_item {
+    background: #ffffff70;
+    padding: 2%;
+	margin: 2%;
+	flex-grow: 1;
+	border-radius: 10px;
+	border: 2px solid rgb(107, 107, 107);
+	
+
+    line-height: 2rem;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
   .flex-item {
     background: #ffffff;
     padding: 2%;
