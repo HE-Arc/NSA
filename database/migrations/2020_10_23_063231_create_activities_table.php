@@ -21,7 +21,7 @@ class CreateActivitiesTable extends Migration
             $table->text('description');
             $table->timestamps();
 
-            $table->foreignId('association_id')->constrained();
+            $table->foreignId('association_id')->constrained()->onDelete('cascade');
             $table->foreignId('image_id')->nullable()->constrained()->onDelete('set null');
         });
     }
