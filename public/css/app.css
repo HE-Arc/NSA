@@ -17100,7 +17100,7 @@ readers do not read off random characters that represent icons */
 
 .card-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 55px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

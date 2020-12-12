@@ -22,9 +22,15 @@
         $subscriptionsIds = Auth::user()->subscriptions()->pluck('id')->toArray();
         @endphp
         @if(in_array($association->id,$subscriptionsIds))
-        <a href="{{route('unsubscribe', ['association' => $association, 'user' => Auth::user()])}}" class="btn btn-danger btn-lg">Unsubscribe <i class="fa fa-plus-circle fa-lg"></i></a>
+        <form method="POST" style="display:inline" action="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}">
+            @csrf
+            <button type="submit" href="{{route('unsubscribe', ['association' => $association, 'user' => Auth::user()])}}" class="btn btn-danger btn-lg">Unsubscribe <i class="fa fa-plus-circle fa-lg"></i></button>
+        </form>
         @else
-        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="btn btn-success btn-lg">Subscribe <i class="fa fa-plus-circle fa-lg"></i></a>
+        <form method="POST" style="display:inline" action="{{route('subscribe',['association' => $association, 'user' => Auth::user()])}}">
+            @csrf
+            <button type="submit" href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="btn btn-success btn-lg">Subscribe <i class="fa fa-plus-circle fa-lg"></i></button>
+        </form>
         @endif
         @else
         <i>You can't subscribe if you are not connected.</i>

@@ -49,6 +49,8 @@ foreach($activities as $activity)
     </form>
 </nav>
 
+<div class="card-container">
+
 <main class="main columns">
 
 
@@ -171,7 +173,6 @@ foreach($activities as $activity)
   </div>
 </main>
 
-
-
+</div>
 
 @endsection
