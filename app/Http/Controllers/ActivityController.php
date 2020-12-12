@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateActivity;
 use App\Models\Activity;
 use App\Models\Image;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class ActivityController extends Controller
 {
@@ -18,47 +18,46 @@ class ActivityController extends Controller
 
     public function index()
     {
-        $filter =NULL;
-        $activities =NULL;
-        if(isset($_GET['filter'])){
-            $filter = $_GET['filter']; 
-        }
-        else{
-            $filter = "all";
+        $filter = null;
+        $activities = null;
+        if (isset($_GET['filter'])) {
+            $filter = $_GET['filter'];
+        } else {
+            $filter = 'all';
         }
 
-        switch ($filter){
-            case "all":
+        switch ($filter) {
+            case 'all':
                 $activities = Activity::all();
             break;
-            case "today":
+            case 'today':
                 $activities = Activity::whereDate('date', Carbon::today())->get();
             break;
-            case "date":
-                if(isset($_GET['date'])){
-                    try{
-                    $activities = Activity::whereDate('date',Carbon::parse($_GET['date']))->get();
-                    if(count($activities)==0){
+            case 'date':
+                if (isset($_GET['date'])) {
+                    try {
+                        $activities = Activity::whereDate('date', Carbon::parse($_GET['date']))->get();
+                        if (count($activities) == 0) {
+                            $activities = Activity::all();
+
+                            return view('activities.index', ['activities' => $activities])->withErrors('No activities for the selected date !');
+                        }
+                    } catch (\Exception $e) {
                         $activities = Activity::all();
-                        return view('activities.index',['activities' => $activities])->withErrors('No activities for the selected date !');
+
+                        return view('activities.index', ['activities' => $activities])->withErrors('Date format not valide !');
                     }
-                    }
-                    catch(\Exception $e){
-                        $activities = Activity::all();
-                        return view('activities.index',['activities' => $activities])->withErrors('Date format not valide !');
-                    }
-                }
-                else{
+                } else {
                     $activities = Activity::all();
-                    return view('activities.index',['activities' => $activities])->withErrors('Date format not valide !');
+
+                    return view('activities.index', ['activities' => $activities])->withErrors('Date format not valide !');
                 }
             break;
             default:
                 $activities = Activity::all();
         }
-                
 
-        return view('activities.index',['activities' => $activities]);
+        return view('activities.index', ['activities' => $activities]);
     }
 
     public function create()
