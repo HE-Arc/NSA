@@ -41,7 +41,7 @@ class ActivityController extends Controller
                             return redirect()->back()->withErrors('No activities for the selected date !');
                         }
                     } catch (\Exception $e) {
-                         return redirect()->back()->withErrors('Date format not valide !');
+                        return redirect()->back()->withErrors('Date format not valide !');
                     }
                 } else {
                     return redirect()->back()->withErrors('Date format not valide !');
