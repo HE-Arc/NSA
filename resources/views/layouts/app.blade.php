@@ -130,6 +130,7 @@
         </div>
     </div>
     @yield('scripts')
+    @yield('validate-script')
     <!-- Menu Toggle Script -->
     <script>
         $(document).ready(function() {

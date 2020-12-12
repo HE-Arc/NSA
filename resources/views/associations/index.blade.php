@@ -11,8 +11,6 @@
 @section('content')
 @include('includes.validation')
 
-
-
 <div class="card-container">
 
     <div class="container card-item">

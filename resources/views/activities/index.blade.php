@@ -42,6 +42,7 @@ foreach($activities as $activity)
 <nav class="navbar navbar-light bg-light" style="background-color: #16a74e;">
     <a class="nav-link" href="?filter=all">All activities</a>
     <a class="nav-link" href="?filter=today">Today</a>
+    <a class="nav-link" href="?filter=joined">Joined activity</a>
     <form action="" method="get" class="form-inline">
     <input type="hidden" name="filter" value="date">
     <input type="date" class="form-control mr-sm-2" name="date" require>
