@@ -5517,6 +5517,7 @@ a.badge-dark.focus {
 .alert {
   position: relative;
   padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
@@ -17119,6 +17120,10 @@ readers do not read off random characters that represent icons */
   justify-content: space-between;
 }
 
+.card-style-show {
+  min-height: 0 !important;
+}
+
 .bg-gradient-own-green {
   background: #16a74eea linear-gradient(180deg, #55ca87, #16a74eea) repeat-x !important;
 }
@@ -17157,7 +17162,7 @@ readers do not read off random characters that represent icons */
   justify-content: space-around;
 }
 
-.card_item {
+.card-item {
   background: #ffffff70;
   padding: 2%;
   flex-grow: 1;

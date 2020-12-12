@@ -54,7 +54,7 @@ foreach($activities as $activity)
 
   <div class="column main-column">
   @if(!is_null($firstActivity))
-    <a class="article first-article" href="#">
+    <a class="article first-article" onclick="window.location.href = '{{route('activities.show', $firstActivity)}}';">
     @if(!is_null($firstActivity->image))
       <figure class="article-image is-4by3">
         <img src="{{$firstActivity->image->src}}" alt="image article">
@@ -92,7 +92,7 @@ foreach($activities as $activity)
     <div class="columns">
     @foreach($bigActivities as $activity)
       <div class="column nested-column">
-        <a class="article" href="#">
+        <a class="article" onclick="window.location.href = '{{route('activities.show', $activity)}}';">
         @if(!is_null($activity->image))
           <figure class="article-image is-16by9">
             <img src="{{$activity->image->src}}" alt="">
@@ -133,7 +133,7 @@ foreach($activities as $activity)
   </div>
   <div class="column">
     @foreach($tinyActivities as $activity)
-    <a class="article" href="">
+    <a class="article" onclick="window.location.href = '{{route('activities.show', $activity)}}';">
     @if(!is_null($activity->image))
       <figure class="article-image is-3by2">
       <img src="{{$activity->image->src}}" alt="">
