@@ -37,7 +37,7 @@
                 <td>{{$association->name}}</td>
                 <td>{{$association->email}}</td>
                 <td class="text-center">
-                @auth
+                    @auth
                     @if(in_array($association->id,$associationIds_subscribed))
                     
                         <form method="POST" style="display:inline" action="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}">
@@ -56,15 +56,15 @@
                     <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">
                         <a href="{{ route('associations.edit', $association) }}" title="Edit" class="text-dark">
                             <i class="fa fa-edit fa-lg"></i>
-                        </a>      
+                        </a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" title="Delete" style="padding:0;border: none; background-color:transparent;">
                             <i class="fa fa-trash fa-lg"></i>
                         </button>
-                        </form>
+                    </form>
                     @else
-                            
+
                     @endif
                 @else
                     <i>You are disconnected</i>      
@@ -79,5 +79,4 @@
     </div>
 
 </div>
-
 @endsection
