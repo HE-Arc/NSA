@@ -30,11 +30,11 @@ class ParticipationController extends Controller
 
             $messages = [
                 'activity_id.unique'  => 'You have already joined.',
-                'activity_id.exists' => 'Activity does not exist.',
+                'activity_id.exists'  => 'Activity does not exist.',
             ];
 
             $validator = Validator::make([
-                'activity_id' => $activity->id,
+                'activity_id'    => $activity->id,
                 'user_id'        => $user->id,
             ], $rule, $messages);
 
