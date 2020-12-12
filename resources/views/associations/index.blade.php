@@ -41,9 +41,18 @@
                 <td class="text-center">
                 @auth
                     @if(in_array($association->id,$associationIds_subscribed))
-                        <a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton" ></a>
+                    
+                        <form method="POST" style="display:inline" action="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}">
+                            @csrf
+                            <button type="submit" class="btn m-0 p-0"><span class="fa fa-check-circle fa-lg text-success subscribeButton"></span></button>
+                        </form>
+                        <!--<a href="{{route('unsubscribe',['association' => $association, 'user' => Auth::user()])}}" class="fa fa-check-circle fa-lg text-success subscribeButton" ></a>-->
                     @else
-                        <a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>                        
+                        <form method="POST" style="display:inline" action="{{route('subscribe',['association' => $association, 'user' => Auth::user()])}}">
+                            @csrf
+                            <button type="submit" class="btn m-0 p-0"><span class="fa fa-plus-circle fa-lg text-dark"></span></button>
+                        </form>
+                        <!--<a href="{{route('subscribe', ['association' => $association, 'user' => Auth::user()])}}" class="fa fa-plus-circle fa-lg text-dark"></a>-->                        
                     @endif
                     @if($association->user_id === Auth::user()->id)
                     <form action="{{ route('associations.destroy', $association) }}" method="POST" style="display:inline">

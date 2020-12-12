@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('activities.index');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -29,6 +30,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('associations', AssociationController::class);
 Route::resource('activities', ActivityController::class);
 
-Route::get('/{user}/subscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
-Route::get('/{user}/unsubscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+Route::post('/{user}/subscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
+Route::post('/{user}/unsubscribe/{association}', [App\Http\Controllers\SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
 
+Route::post('/{user}/participate/{activity}', [App\Http\Controllers\ParticipationController::class, 'participate'])->name('participate');
+Route::post('/{user}/unparticipate/{activity}', [App\Http\Controllers\ParticipationController::class, 'unparticipate'])->name('unparticipate');

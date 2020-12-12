@@ -31,10 +31,18 @@ foreach($activities as $activity)
 }
 @endphp
 
+@auth
+@php
+  $activities = Auth::user()->activities();
+  $activitiesIds_Joined = $activities->pluck('id')->toArray();
+@endphp
+@endauth
+
 <main class="main columns">
 
 
   <div class="column main-column">
+  @if(!is_null($firstActivity))
     <a class="article first-article" href="#">
     @if(!is_null($firstActivity->image))
       <figure class="article-image is-4by3">
@@ -49,12 +57,27 @@ foreach($activities as $activity)
          {{$firstActivity->getWrappedTinyDesc()}}
        </p>
        <footer class="article-info">
-         <span>{{$firstActivity->date}}</span>
-         <span>{{$firstActivity->location}}</span>
+          <span>{{$firstActivity->date}}</span>
+          @auth
+          <span>
+            @if(in_array($firstActivity->id,$activitiesIds_Joined))
+              <form method="POST" style="display:inline" action="{{route('unparticipate',['activity' => $firstActivity, 'user' => Auth::user()])}}">
+                @csrf
+                <button type="submit" class="btn btn-outline-dark m-0 pt-0 pb-0"><span>Unjoin</span></button>
+              </form>
+            @else
+              <form method="POST" style="display:inline" action="{{route('participate',['activity' => $firstActivity, 'user' => Auth::user()])}}">
+                  @csrf
+                  <button type="submit" class="btn btn-outline-success m-0 pt-0 pb-0"><span>Join</span></button>
+              </form>                    
+            @endif
+          </span>
+          @endauth
+          <span>{{$firstActivity->location}}</span>
        </footer>
      </div>
     </a>
-    
+    @endif
     <div class="columns">
     @foreach($bigActivities as $activity)
       <div class="column nested-column">
@@ -73,6 +96,21 @@ foreach($activities as $activity)
             </p>
             <footer class="article-info">
                 <span>{{$activity->date}}</span>
+                @auth
+                <span>
+                  @if(in_array($activity->id,$activitiesIds_Joined))
+                    <form method="POST" style="display:inline" action="{{route('unparticipate',['activity' => $activity, 'user' => Auth::user()])}}">
+                      @csrf
+                      <button type="submit" class="btn btn-outline-dark m-0 pt-0 pb-0"><span>Unjoin</span></button>
+                    </form>
+                  @else
+                    <form method="POST" style="display:inline" action="{{route('participate',['activity' => $activity, 'user' => Auth::user()])}}">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-success m-0 pt-0 pb-0"><span>Join</span></button>
+                    </form>                    
+                  @endif
+                </span>
+                @endauth
                 <span>{{$activity->location}}</span>
             </footer>
           </div>
@@ -99,7 +137,22 @@ foreach($activities as $activity)
         </p>
         <footer class="article-info">
         <span>{{$activity->date}}</span>
-                <span>{{$activity->location}}</span>
+        @auth
+        <span>
+          @if(in_array($activity->id,$activitiesIds_Joined))
+            <form method="POST" style="display:inline" action="{{route('unparticipate',['activity' => $activity, 'user' => Auth::user()])}}">
+              @csrf
+              <button type="submit" class="btn btn-outline-dark m-0 pt-0 pb-0"><span>Unjoin</span></button>
+            </form>
+          @else
+            <form method="POST" style="display:inline" action="{{route('participate',['activity' => $activity, 'user' => Auth::user()])}}">
+                @csrf
+                <button type="submit" class="btn btn-outline-success m-0 pt-0 pb-0"><span>Join</span></button>
+            </form>                    
+          @endif
+        </span>
+        @endauth
+        <span>{{$activity->location}}</span>
         </footer>
       </div>
     </a>
@@ -108,23 +161,6 @@ foreach($activities as $activity)
 </main>
 
 
-<!--
-<ul class="flex-container pl-5 pr-5">
-    <li class="row justify-content-center">
-    @foreach($activities as $activity)
-    <div class="flex-item">
-        <h1>{{$activity->title}}</h1>
-        <p>{{$activity->description}}</p>
-        <h5>Date : {{$activity->date}}</h5>
-        <h5>Location : {{$activity->location}}</h5>
-        @if(!is_null($activity->image))
-            <img width="100em" height="100em" src="{{ $activity->image->src }}" />
-        @endif
-    </div>
 
-    @endforeach
-    </li>
-</ul>
--->
 
 @endsection

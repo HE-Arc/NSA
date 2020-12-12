@@ -53,6 +53,6 @@ class User extends Authenticatable
 
     public function activities()
     {
-        return $this->belongsToMany('App\Models\Activity', 'subscriptions');
+        return $this->belongsToMany('App\Models\Activity', 'participations');
     }
 }
