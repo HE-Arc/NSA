@@ -77,7 +77,6 @@ class ActivityController extends Controller
         return view('activities.show', compact('activity'));
     }
 
-
     public function store(CreateActivity $request)
     {
         $request->validate($request->rules());
