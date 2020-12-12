@@ -4,11 +4,14 @@
 <script type="text/javascript" src="{{ asset('js/subscribeButton.js') }}"></script>
 @endsection
 
+@section('styles')
+<link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 @include('includes.validation')
 
 
-<link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
 
 <div class="container">
     <h1>Associations list</h1>
