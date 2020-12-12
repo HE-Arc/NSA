@@ -17113,6 +17113,7 @@ readers do not read off random characters that represent icons */
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
+  min-height: 50em;
   border: 2px solid gray;
   display: flex;
   flex-wrap: wrap;
@@ -17142,7 +17143,7 @@ readers do not read off random characters that represent icons */
 }
 
 .btn-own-red:hover {
-  background-color: #e8423fd0;
+  background-color: #E8423Fd0;
   color: white;
   font-weight: bold;
 }

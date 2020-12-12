@@ -17,7 +17,7 @@ class ActivityController extends Controller
 
     public function index()
     {
-        $activities = Activity::all();
+        $activities = Activity::all();  
 
         return view('activities.index', ['activities' => $activities]);
     }
@@ -33,6 +33,12 @@ class ActivityController extends Controller
             return view('activities.create', compact('userAssociations'));
         }
     }
+
+    public function show(Activity $activity)
+    {
+        return view('activities.show', compact('activity'));
+    }
+
 
     public function store(CreateActivity $request)
     {
