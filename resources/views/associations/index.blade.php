@@ -10,11 +10,11 @@
 
 <link href="{{ asset('css/subscribeButton.css') }}" rel="stylesheet">
 
-<div class="card-container" style="align-items:baseline">
+<div class="card-container">
 
-    <div class="mt-5 container card_item">
-        <h1 class="mb-4" style="font-weight: bold;">Associations list</h1>
-        <div class="row justify-content-center">
+    <div class="container card_item">
+        <h1 class="mt-3 mb-5" style="font-weight: bold;">Associations list</h1>
+        <div class="mb-5 row justify-content-center">
             <table class="table table-striped bg-white">
                 <thead class="thead-dark">
                     <tr>
@@ -66,7 +66,7 @@
             </table>
 
         </div>
-        <a href="{{ route('associations.create') }}" class="btn btn-own-green btn-lg mt-4">Create Association</a>
+        <a href="{{ route('associations.create') }}" class="btn btn-own-green btn-lg mb-3">Create Association</a>
     </div>
 
 </div>
