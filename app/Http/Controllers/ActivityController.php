@@ -32,6 +32,13 @@ class ActivityController extends Controller
             break;
             case 'today':
                 $activities = Activity::whereDate('date', Carbon::today())->get();
+                
+            break;
+            case 'joined':
+                $activities = Auth::user()->activities;
+                if (count($activities) == 0) {
+                    return redirect('/')->withErrors('You are not participating in any activities !');
+                }
             break;
             case 'date':
                 if (isset($_GET['date'])) {
