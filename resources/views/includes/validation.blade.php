@@ -21,3 +21,13 @@
     </ul>
 </div>
 @endif
+
+@section('validate-script')
+<script>
+$(document).ready(function() {
+  $(".alert").delay(3000).fadeOut( "slow", function() {
+    // Animation complete.
+  });
+});
+</script>
+@endsection
