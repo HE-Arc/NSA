@@ -42,6 +42,7 @@ class Image extends Model
         $storingImageName = Str::slug($imageName.'_'.time()).'.'.$imageExtension;
 
         $path = $file->storeAs('uploads/images', $storingImageName, 'public');
+        //Storage::disk('public')->putFileAs('images',)
 
         $image->src = '/storage/'.$path;
         $image->storage_name = $storingImageName;
