@@ -39,6 +39,9 @@ $associations_owner = Auth::user()->associations()->pluck('id')->toArray();
                 @endauth
             </div>
             <div class="form-group col-sm">
+                <h5><strong>Number of participant :</strong> {{count($activity->participants)}}</h5>
+            </div>
+            <div class="form-group col-sm">
                 <h5><strong>Location :</strong> {{$activity->location}}</h5>
             </div>
         </div>
