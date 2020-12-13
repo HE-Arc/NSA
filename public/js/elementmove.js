@@ -1,8 +1,5 @@
 class HoverButton {
     constructor(el) {
-
-        console.log(el);
-
         this.el = el;
         this.hover = false;
         this.calculatePosition();
