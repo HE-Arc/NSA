@@ -21,7 +21,7 @@ class Activity extends Model
 
     public function getWrappedBigDesc()
     {
-        return $this->getWrappedDesc(1000);
+        return $this->getWrappedDesc(600);
     }
 
     public function getWrappedTinyDesc()
