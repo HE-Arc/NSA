@@ -1,5 +1,9 @@
 <h1 align="center"> NSA (Neuchatel Student Associations) </h1>
 
+ <p align="center">
+    <img src="https://raw.githubusercontent.com/wiki/HE-Arc/NSA/img/logo_mob.png" width="35%">
+</p>
+
 # Contexte
 
 Dans le cadre du cours de développement web de 3ème année, les étudiants doivent réaliser une application web avec l’aide du Framework PHP Laravel. Ce projet doit au minimum être « viable » et « crédible », cela signifie qu’il doit avoir un intérêt et une utilité « réelle » et être « réaliste ».
